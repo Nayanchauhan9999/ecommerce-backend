@@ -1,16 +1,16 @@
 {
-  "version":1,
-  "name":"ecommerce-backend",
-  "builds":[
+  "version": 1,
+  "name": "ecommerce-backend",
+  "builds": [
     {
-      "src":"/dist/api/index.js",
-      "use":"@vercel/node"
+      "src": "dist/app.js",
+      "use": "@vercel/node"
     }
   ],
-  "routes":[
+  "routes": [
     {
-      "src":"/(.*)",
-      "dest":"/dist/api/index.js"
+      "src": "/(.*)",
+      "dest": "/dist/app.js"
     }
   ]
 }
