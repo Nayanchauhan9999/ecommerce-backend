@@ -103,7 +103,7 @@
   },
   "include": [
     "**/*.ts",
-    "loader.js"
+    "./api/*.ts"
   ],
   "exclude": [
     "node_modules",
