@@ -20,7 +20,7 @@ export const getUsers = async (req: Request, res: Response) => {
   }
 };
 
-// method : GET , get single user ::: Login required
+// method : GET ::: route - /api/v1/user ::: get single user ::: Login Required
 export const getUser = async (req: Request, res: Response) => {
   try {
     const findUser = await UserModal.findById(req.params.id);
