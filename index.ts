@@ -6,10 +6,10 @@ import {
   signinRoutes,
   signupRoutes,
   userRoutes,
-} from "../src/Routes";
-import dbConnection from "../src/utils/database";
+} from "./src/Routes";
+import dbConnection from "./src/utils/database";
 import "dotenv/config";
-import validateToken from "../src/middleware/validateToken";
+import validateToken from "./src/middleware/validateToken";
 
 const app = express();
 const PORT = 8080 || process.env.PORT;
