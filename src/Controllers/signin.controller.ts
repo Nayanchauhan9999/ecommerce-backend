@@ -33,7 +33,7 @@ export const signinUser = async (
   const token = await findUser.generateAuthToken();
 
   res.cookie("jwt", token, {
-    expires: new Date(Date.now() + 30000),
+    expires: new Date(Date.now() + 1000 * 60 * 60 * 2),
     httpOnly: true,
   });
 

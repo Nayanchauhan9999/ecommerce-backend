@@ -71,7 +71,7 @@ Hi, I'm Nayan Chauhan! 👋. A web developer...
 
 
 ## 🛠 My Skills
-Javascript, HTML, CSS, ReactJS, NextJs, ExpressJs, MongooseJs, MongoDB, NodeJs, Typescript, Rest-Api, Styled-Components, Formik, React-hook-form, Redux, Redux-toolkit, Git & GitHub, Bootstrap, TailwindCSS, Material UI.
+Javascript, HTML, CSS, ReactJS, NextJs, ExpressJs, MongooseJs, MongoDB, NodeJs, Typescript, Rest-Api, Styled-Components, Formik, React-hook-form, Redux, npm, Axios,Redux-toolkit, Git & GitHub, Bootstrap, TailwindCSS, Material UI.
 
 
 ## 🔗 Links

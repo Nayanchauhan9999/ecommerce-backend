@@ -2,20 +2,32 @@ import { Response, Request } from "express";
 import UserModal from "../models/user.model";
 import { IUser } from "../utils/Types";
 
-export const createUser = async (req: Request<{}, {}, IUser>, res: Response) => {
-  const { email, password, confirmPassword } = req.body;
+export const createUser = async (
+  req: Request<{}, {}, IUser>,
+  res: Response
+) => {
+  const { email, password, confirmPassword, firstName, lastName } = req.body;
 
-  if (!password) {
-    res.json({ password: "Please Enter your Password" });
-    return;
+  const errors: string[] = [];
+
+  if (!firstName) {
+    errors.push("Please enter your first Name");
   }
-
-  if (!confirmPassword) {
-    res.json({ confirmPassword: "Please Enter confirm Password" });
-    return;
+  if (!lastName) {
+    errors.push("Please enter your Last Name");
   }
   if (!email) {
-    res.json({ email: "Please Enter Your Email" });
+    errors.push("Please enter your email");
+  }
+  if (!password) {
+    errors.push("Please enter Password");
+  }
+  if (!confirmPassword) {
+    errors.push("Please enter confirm Password");
+  }
+
+  if (!firstName || !lastName || !email || !password || !confirmPassword) {
+    res.status(400).json({ message: errors });
     return;
   }
 
@@ -41,8 +53,21 @@ export const createUser = async (req: Request<{}, {}, IUser>, res: Response) => 
     return;
   }
 
-  const newUser = new UserModal({ email, password, confirmPassword });
-  const createdUser = await newUser.save();
+  const newUser = new UserModal({
+    email,
+    password,
+    confirmPassword,
+    firstName,
+    lastName,
+  });
+  const createdUser: IUser = await newUser.save();
 
-  res.status(201).json(createdUser);
+  const sendResponseObject = {
+    id: createdUser.id,
+    firstName: createdUser?.firstName,
+    lastName: createdUser?.lastName,
+    email: createdUser?.email,
+  };
+
+  res.status(201).json(sendResponseObject);
 };

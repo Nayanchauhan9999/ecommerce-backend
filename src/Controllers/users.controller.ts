@@ -2,17 +2,25 @@ import { Request, Response } from "express";
 import UserModal from "../models/user.model";
 import { IUser } from "../utils/Types";
 
-// method : GET , get All users list
+// method : GET ::: route - /api/v1/users ::: get All users list ::: Login Required
 export const getUsers = async (req: Request, res: Response) => {
   try {
-    const getUsersList: IUser[] = await UserModal.find();
-    res.status(200).send(getUsersList);
+    const token = req.cookies.jwt;
+    if (!token) {
+      res
+        .status(403)
+        .json({ message: "You don't have permission to access content" });
+    } else {
+      const getUsersList: IUser[] = await UserModal.find();
+      res.status(200).send(getUsersList);
+    }
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
-// method : GET , get single user
+// method : GET , get single user ::: Login required
 export const getUser = async (req: Request, res: Response) => {
   try {
     const findUser = await UserModal.findById(req.params.id);
@@ -30,13 +38,27 @@ export const getUser = async (req: Request, res: Response) => {
 // method : PATCH , update single user
 export const updateUser = async (req: Request, res: Response) => {
   try {
-    const updatedUser = await UserModal.findByIdAndUpdate(
+    const updatedUser: IUser | null = await UserModal.findByIdAndUpdate(
       { _id: req.params.id },
       req.body
-      );
-    res.status(200).send(updatedUser);
+    );
+    if (updatedUser) res.status(200).send(updatedUser);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+// method : DELETE , delete single user
+export const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const deletedUser: IUser | null = await UserModal.findByIdAndDelete(
+      req.params.id
+    );
+    console.log(deletedUser);
+
+    if (deletedUser) res.status(202).send(deletedUser);
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };

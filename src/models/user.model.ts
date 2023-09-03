@@ -4,6 +4,16 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 const userSchema: Schema<IUser, UserModalTypes, IUserMethods> = new Schema({
+  firstName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   email: {
     type: String,
     required: true,
@@ -42,8 +52,10 @@ userSchema.pre("save", async function (next) {
 });
 
 userSchema.method("generateAuthToken", async function (): Promise<string> {
-  const token: string = jwt.sign({ _id: this._id }, process.env.JWT_SECRET_KEY);
-  this.tokens = (this.tokens.concat({ token: token })).slice(-5);
+  const token: string = jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
+    expiresIn:"2h"
+  });
+  this.tokens = this.tokens.concat({ token: token }).slice(-5);
   await this.save();
   return token;
 });
