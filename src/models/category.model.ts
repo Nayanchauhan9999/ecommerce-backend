@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { ICategory } from "../utils/Types";
+import { ICategory } from "../utils/Types/index.js";
 
 const categorySchema: Schema<ICategory> = new mongoose.Schema({
   name: {

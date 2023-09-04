@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import Category from "../models/category.model";
+import Category from "../models/category.model.js";
 //method : GET ::: get all category list ::: path - /api/v1/categories
 export const getCategories = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import UserModal from "../models/user.model";
+import UserModal from "../models/user.model.js";
 export const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password, confirmPassword, firstName, lastName } = req.body;
     const errors = [];

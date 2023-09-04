@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { createCategory, deleteCategory, getCategories, getCategory, updateCategory, } from "../Controllers/category.controller";
-import { validateId, validateReqBody } from "../middleware";
+import { createCategory, deleteCategory, getCategories, getCategory, updateCategory, } from "../Controllers/category.controller.js";
+import { validateId, validateReqBody } from "../middleware/index.js";
 const router = Router();
 router.get("/", getCategories);
 router.post("/", validateReqBody, createCategory);

@@ -7,13 +7,12 @@ import {
   signinRoutes,
   signupRoutes,
   userRoutes,
-} from "./src/Routes";
-import dbConnection from "./src/utils/database";
+} from "./src/Routes/index.js";
+
+import dbConnection from "./src/utils/database/index.js";
 import "dotenv/config";
-import validateToken from "./src/middleware/validateToken";
-import cors from "cors"
-
-
+import validateToken from "./src/middleware/validateToken.js";
+import cors from "cors";
 
 const app = express();
 const PORT = 8080 || process.env.PORT;
@@ -34,7 +33,7 @@ app.use("/api/v1", homeRoutes);
 app.use("/api/v1/auth/signup", signupRoutes);
 app.use("/api/v1/auth/signin", signinRoutes);
 app.use("/api/v1/users", validateToken, userRoutes);
-app.use("/api/v1/categories",categoryRoutes)
+app.use("/api/v1/categories", categoryRoutes);
 
 app.listen(PORT, () => {
   console.log(

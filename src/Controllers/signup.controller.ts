@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
-import UserModal from "../models/user.model";
-import { IUser } from "../utils/Types";
+import UserModal from "../models/user.model.js";
+import { IUser } from "../utils/Types/index.js";
 
 export const createUser = async (
   req: Request<{}, {}, IUser>,

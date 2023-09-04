@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import jwt, { TokenExpiredError } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 const validateToken = (req: Request, res: Response, next: NextFunction) => {
   //geting token from cookie storage, this will run if both token and cookie expire same time

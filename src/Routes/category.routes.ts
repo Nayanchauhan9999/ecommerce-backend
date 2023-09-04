@@ -5,8 +5,8 @@ import {
   getCategories,
   getCategory,
   updateCategory,
-} from "../Controllers/category.controller";
-import { validateId, validateReqBody } from "../middleware";
+} from "../Controllers/category.controller.js";
+import { validateId, validateReqBody } from "../middleware/index.js";
 
 const router = Router();
 

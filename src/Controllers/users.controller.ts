@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import UserModal from "../models/user.model";
-import { IUser } from "../utils/Types";
+import UserModal from "../models/user.model.js";
+import { IUser } from "../utils/Types/index.js";
 
 // method : GET ::: route - /api/v1/users ::: get All users list ::: Login Required
 export const getUsers = async (req: Request, res: Response) => {

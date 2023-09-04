@@ -1,7 +1,7 @@
 import { Response, Request } from "express";
-import { IUser } from "../utils/Types";
+import { IUser } from "../utils/Types/index.js";
 import bcrypt from "bcrypt";
-import UserModal from "../models/user.model";
+import UserModal from "../models/user.model.js";
 
 export const signinUser = async (
   req: Request<{}, {}, IUser>,

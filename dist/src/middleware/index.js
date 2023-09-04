@@ -1,3 +1,3 @@
-export { default as validateReqBody } from "./validateReqBody";
-export { default as validateId } from "./validateId";
-export { default as validateToken } from "./validateToken";
+export { default as validateReqBody } from "./validateReqBody.js";
+export { default as validateId } from "./validateId.js";
+export { default as validateToken } from "./validateToken.js";
