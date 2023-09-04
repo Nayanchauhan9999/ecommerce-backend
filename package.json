@@ -2,12 +2,12 @@
   "name": "ecom-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/app.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --experimental-specifier-resolution=node dist/app.js",
+    "start": "node --experimental-specifier-resolution=node dist/index.js",
     "build": "npx tsc",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q --experimental-specifier-resolution=node dist/app.js\""
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q --experimental-specifier-resolution=node dist/index.js\""
   },
   "keywords": [],
   "author": "",
