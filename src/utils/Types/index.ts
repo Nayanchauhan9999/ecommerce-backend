@@ -20,3 +20,13 @@ export interface IUserMethods {
 }
 
 export type UserModalTypes = Model<IUser, {}, IUserMethods>;
+
+
+//category
+
+export interface ICategory extends Document{
+  name: string;
+  description: string;
+  createdAt: Date;
+  updatedAt: Date;
+}

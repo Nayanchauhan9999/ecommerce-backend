@@ -2,6 +2,7 @@ import express from "express";
 import chalk from "chalk";
 import cookieParser from "cookie-parser";
 import {
+  categoryRoutes,
   homeRoutes,
   signinRoutes,
   signupRoutes,
@@ -21,6 +22,7 @@ app.use("/api/v1", homeRoutes);
 app.use("/api/v1/auth/signup", signupRoutes);
 app.use("/api/v1/auth/signin", signinRoutes);
 app.use("/api/v1/users", validateToken, userRoutes);
+app.use("/api/v1/categories",categoryRoutes)
 
 app.listen(PORT, () => {
   console.log(
