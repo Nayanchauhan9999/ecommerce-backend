@@ -11,11 +11,23 @@ import {
 import dbConnection from "./src/utils/database";
 import "dotenv/config";
 import validateToken from "./src/middleware/validateToken";
+import cors from "cors"
+
+
 
 const app = express();
 const PORT = 8080 || process.env.PORT;
 app.use(express.json());
 app.use(cookieParser());
+
+const corsConfig = {
+  origin: "",
+  credentials: true,
+  methods: ["GET", "POST", "PATCH", "DELETE"],
+};
+app.use(cors(corsConfig));
+app.options("", cors(corsConfig));
+
 dbConnection();
 
 app.use("/api/v1", homeRoutes);
