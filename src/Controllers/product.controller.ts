@@ -24,12 +24,10 @@ export const getProduct = async (req: Request, res: Response) => {
 //method : POST ::: path : /api/v1/products ::: info : create a product
 export const createProduct = async (req: Request, res: Response) => {
   try {
-    console.log(req.body);
     const product = new Product(req.body);
     await product.save();
     res.status(200).send(product);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
@@ -44,7 +42,6 @@ export const updateProduct = async (req: Request, res: Response) => {
         new: true,
       }
     );
-    console.log(product)
     res.status(200).json({ message: "Product updated successfully" });
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error" });
