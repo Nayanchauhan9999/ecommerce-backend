@@ -7,10 +7,11 @@ import "dotenv/config";
 //personal imports
 import { categoryRoutes, homeRoutes, signinRoutes, signupRoutes, userRoutes, productRoutes, } from "./src/Routes/index.js";
 import dbConnection from "./src/utils/database/index.js";
-import { validateReqBody, validateToken, } from "./src/middleware/index.js";
-// --------------------------- import ends ------------------------------
+import { validateReqBody, validateToken } from "./src/middleware/index.js";
 const app = express();
 const PORT = 8080 || process.env.PORT;
+// --------------------------- import ends ------------------------------
+// ------------------- middleware starts ------------------------------
 app.use(express.json());
 app.use(cookieParser());
 const corsConfig = {
@@ -19,6 +20,7 @@ const corsConfig = {
     methods: ["GET", "POST", "PATCH", "DELETE"],
 };
 app.use(cors(corsConfig));
+// ------------------- middleware starts ------------------------------
 app.options("", cors(corsConfig));
 dbConnection();
 app.use("/api/v1", [validateReqBody], homeRoutes);
