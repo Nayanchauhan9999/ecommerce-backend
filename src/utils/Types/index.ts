@@ -21,12 +21,32 @@ export interface IUserMethods {
 
 export type UserModalTypes = Model<IUser, {}, IUserMethods>;
 
-
 //category
 
-export interface ICategory extends Document{
+export interface ICategory extends Document {
   name: string;
   description: string;
   createdAt: Date;
   updatedAt: Date;
+}
+
+//product types
+
+export interface IProduct {
+  title: string;
+  description: string;
+  price: number;
+  createdAt: Date;
+  updatedAt: Date;
+  rating: number;
+  categories: ICategory[];
+  images: string[] | string;
+  quantity: number;
+  Reviews: string[] | string;
+  tags: string[];
+  colors?: string[] | string;
+  policy?: string[] | string;
+  sizes?: string[] | string;
+  brand?: string;
+  brandLogo?: string;
 }

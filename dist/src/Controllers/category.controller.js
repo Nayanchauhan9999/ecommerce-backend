@@ -51,6 +51,13 @@ export const createCategory = (req, res) => __awaiter(void 0, void 0, void 0, fu
 //method : PATCH ::: update category ::: path - /api/v1/category/:id
 export const updateCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const isNameAlreadyExist = yield Category.findOne({
+            name: req.body.name,
+        });
+        if (isNameAlreadyExist) {
+            res.status(400).json({ message: "Category name already available" });
+            return;
+        }
         const updatedCategory = yield Category.findByIdAndUpdate({ _id: req.params.id }, req.body);
         if (!updatedCategory) {
             res.status(404).json({ message: "Category Not Found" });

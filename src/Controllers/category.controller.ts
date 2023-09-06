@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Category from "../models/category.model.js";
+import { ICategory } from "../utils/Types/index.js";
 
 //method : GET ::: get all category list ::: path - /api/v1/categories
 export const getCategories = async (req: Request, res: Response) => {
@@ -46,12 +47,19 @@ export const createCategory = async (req: Request, res: Response) => {
 //method : PATCH ::: update category ::: path - /api/v1/category/:id
 export const updateCategory = async (req: Request, res: Response) => {
   try {
+    const isNameAlreadyExist: ICategory | null = await Category.findOne({
+      name: req.body.name,
+    });
+    if (isNameAlreadyExist) {
+      res.status(400).json({ message: "Category name already available" });
+      return;
+    }
     const updatedCategory = await Category.findByIdAndUpdate(
       { _id: req.params.id },
       req.body
     );
     if (!updatedCategory) {
-      res.status(404).json({message:"Category Not Found"})
+      res.status(404).json({ message: "Category Not Found" });
     }
     res.status(200).send(updatedCategory);
   } catch (error) {
