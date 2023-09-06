@@ -1,19 +1,27 @@
+//external library imports
 import express from "express";
 import chalk from "chalk";
 import cookieParser from "cookie-parser";
+import cors from "cors";
+import "dotenv/config";
+
+//personal imports
 import {
   categoryRoutes,
   homeRoutes,
   signinRoutes,
   signupRoutes,
   userRoutes,
-  productRoutes
+  productRoutes,
 } from "./src/Routes/index.js";
-
 import dbConnection from "./src/utils/database/index.js";
-import "dotenv/config";
-import validateToken from "./src/middleware/validateToken.js";
-import cors from "cors";
+import {
+  validateId,
+  validateReqBody,
+  validateToken,
+} from "./src/middleware/index.js";
+
+// --------------------------- import ends ------------------------------
 
 const app = express();
 const PORT = 8080 || process.env.PORT;
@@ -30,12 +38,12 @@ app.options("", cors(corsConfig));
 
 dbConnection();
 
-app.use("/api/v1", homeRoutes);
-app.use("/api/v1/auth/signup", signupRoutes);
-app.use("/api/v1/auth/signin", signinRoutes);
-app.use("/api/v1/users", validateToken, userRoutes);
-app.use("/api/v1/categories", categoryRoutes);
-app.use("/api/v1/products", productRoutes);
+app.use("/api/v1",[validateReqBody], homeRoutes);
+app.use("/api/v1/auth/signup",[validateReqBody], signupRoutes);
+app.use("/api/v1/auth/signin", [validateReqBody], signinRoutes);
+app.use("/api/v1/users", [validateReqBody], validateToken, userRoutes);
+app.use("/api/v1/categories", [validateReqBody], categoryRoutes);
+app.use("/api/v1/products", [validateReqBody], productRoutes);
 
 app.listen(PORT, () => {
   console.log(

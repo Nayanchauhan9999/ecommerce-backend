@@ -36,12 +36,11 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
   sizes: {
-    type: String,
-    required: true,
+    type: Array,
   },
   tags: {
     required: true,
-    type: String,
+    type: Array,
   },
   colors: { type: Array, required: true },
   images: {

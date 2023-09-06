@@ -58,11 +58,13 @@ export const updateCategory = (req, res) => __awaiter(void 0, void 0, void 0, fu
             res.status(400).json({ message: "Category name already available" });
             return;
         }
-        const updatedCategory = yield Category.findByIdAndUpdate({ _id: req.params.id }, req.body);
+        const updatedCategory = yield Category.findByIdAndUpdate({ _id: req.params.id }, req.body, {
+            new: true,
+        });
         if (!updatedCategory) {
             res.status(404).json({ message: "Category Not Found" });
         }
-        res.status(200).send(updatedCategory);
+        res.status(200).json({ message: "Category Updated Successfully" });
     }
     catch (error) {
         res.status(500).json({ message: "Internal Server Error" });

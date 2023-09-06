@@ -44,9 +44,11 @@ export const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function*
 // method : PATCH , update single user
 export const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const updatedUser = yield UserModal.findByIdAndUpdate({ _id: req.params.id }, req.body);
+        const updatedUser = yield UserModal.findByIdAndUpdate({ _id: req.params.id }, req.body, {
+            new: true,
+        });
         if (updatedUser)
-            res.status(200).send(updatedUser);
+            res.status(200).json({ message: "User Details Update success" });
     }
     catch (error) {
         console.log(error);

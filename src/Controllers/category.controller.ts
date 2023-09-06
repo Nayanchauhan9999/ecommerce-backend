@@ -56,12 +56,15 @@ export const updateCategory = async (req: Request, res: Response) => {
     }
     const updatedCategory = await Category.findByIdAndUpdate(
       { _id: req.params.id },
-      req.body
+      req.body,
+      {
+        new: true,
+      }
     );
     if (!updatedCategory) {
       res.status(404).json({ message: "Category Not Found" });
     }
-    res.status(200).send(updatedCategory);
+    res.status(200).json({ message: "Category Updated Successfully" });
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error" });
   }

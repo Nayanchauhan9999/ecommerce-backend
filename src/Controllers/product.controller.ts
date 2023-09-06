@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Product from "../models/product.modal";
+import Product from "../models/product.modal.js";
 
 //method : GET ::: path : /api/v1/products ::: info : get all products, login not required
 export const getProducts = async (req: Request, res: Response) => {
@@ -24,10 +24,12 @@ export const getProduct = async (req: Request, res: Response) => {
 //method : POST ::: path : /api/v1/products ::: info : create a product
 export const createProduct = async (req: Request, res: Response) => {
   try {
+    console.log(req.body);
     const product = new Product(req.body);
     await product.save();
     res.status(200).send(product);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
@@ -37,9 +39,13 @@ export const updateProduct = async (req: Request, res: Response) => {
   try {
     const product = await Product.findByIdAndUpdate(
       { _id: req.params.id },
-      req.body
+      req.body,
+      {
+        new: true,
+      }
     );
-    res.status(200).send(product);
+    console.log(product)
+    res.status(200).json({ message: "Product updated successfully" });
   } catch (error) {
     res.status(500).json({ message: "Internal Server Error" });
   }
