@@ -35,7 +35,6 @@ app.use(cors(corsConfig));
 
 // ------------------- middleware starts ------------------------------
 
-
 app.options("", cors(corsConfig));
 
 dbConnection();
