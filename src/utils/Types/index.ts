@@ -6,6 +6,7 @@ export type TokenTypes = {
 };
 
 export interface IUser extends Document {
+  profilePicture: string;
   firstName: string;
   lastName: string;
   email: string;
