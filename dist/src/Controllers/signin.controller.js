@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import bcrypt from "bcrypt";
 import UserModal from "../models/user.model.js";
 export const signinUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     const { email, password } = req.body;
     if (!email) {
         res.json({ message: "Please enter you email" });
@@ -35,9 +36,9 @@ export const signinUser = (req, res) => __awaiter(void 0, void 0, void 0, functi
         httpOnly: true,
     });
     const sendResponseObject = {
-        id: findUser.id,
+        id: findUser === null || findUser === void 0 ? void 0 : findUser.id,
         email: findUser === null || findUser === void 0 ? void 0 : findUser.email,
-        token: findUser.tokens[findUser.tokens.length - 1].token,
+        token: (_a = findUser === null || findUser === void 0 ? void 0 : findUser.tokens[findUser.tokens.length - 1]) === null || _a === void 0 ? void 0 : _a.token,
     };
     res.send(sendResponseObject);
 });

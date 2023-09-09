@@ -38,9 +38,9 @@ export const signinUser = async (
   });
 
   const sendResponseObject = {
-    id: findUser.id,
+    id: findUser?.id,
     email: findUser?.email,
-    token: findUser.tokens[findUser.tokens.length - 1].token,
+    token: findUser?.tokens[findUser.tokens.length - 1]?.token,
   };
 
   res.send(sendResponseObject);
