@@ -14,14 +14,13 @@ const PORT = 8080 || process.env.PORT;
 // ------------------- middleware starts ------------------------------
 app.use(express.json());
 app.use(cookieParser());
-const corsConfig = {
-    origin: "",
-    credentials: true,
-    methods: ["GET", "POST", "PATCH", "DELETE"],
-};
-app.use(cors(corsConfig));
-// ------------------- middleware starts ------------------------------
-app.options("", cors(corsConfig));
+// const corsConfig = {
+//   origin: "",
+//   credentials: true,
+//   methods: ["GET", "POST", "PATCH", "DELETE"],
+// };
+app.use(cors());
+// ------------------- middleware starts ------------------------------ //
 dbConnection();
 app.use("/api/v1", [validateReqBody], homeRoutes);
 app.use("/api/v1/auth/signup", [validateReqBody], signupRoutes);
