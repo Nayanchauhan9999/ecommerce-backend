@@ -26,11 +26,6 @@ const PORT = 8080 || process.env.PORT;
 
 app.use(express.json());
 app.use(cookieParser());
-// const corsConfig = {
-//   origin: "",
-//   credentials: true,
-//   methods: ["GET", "POST", "PATCH", "DELETE"],
-// };
 app.use(cors());
 
 // ------------------- middleware starts ------------------------------ //
