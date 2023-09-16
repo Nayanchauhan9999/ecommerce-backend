@@ -7,15 +7,11 @@
       "config": { "includeFiles": ["dist/**"] }
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "dist/index.js"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/api/(.*)",
+      "src": "/(.*)",
+      "dest": "dist/index.js",
+      "methods": ["GET", "POST", "PATCH", "DELETE"],
       "headers": [
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
         { "key": "Access-Control-Allow-Origin", "value": "*" },
