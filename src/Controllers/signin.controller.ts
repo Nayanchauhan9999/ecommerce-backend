@@ -35,6 +35,7 @@ export const signinUser = async (
   res.cookie("jwt", token, {
     expires: new Date(Date.now() + 1000 * 60 * 60 * 2),
     httpOnly: true,
+    domain: "http://localhost:3000/",
   });
 
   const sendResponseObject = {
