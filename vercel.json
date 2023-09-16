@@ -11,7 +11,24 @@
     {
       "src": "/(.*)",
       "dest": "dist/index.js",
-      "methods": ["GET", "POST", "PATCH", "DELETE", "OPTIONS"]
+      "methods": ["GET", "POST", "PATCH", "DELETE"]
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Credentials", "value": true },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET,PATCH,DELETE,POST"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+        }
+      ]
     }
   ]
 }
