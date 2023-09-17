@@ -35,6 +35,7 @@ export const signinUser = (req, res) => __awaiter(void 0, void 0, void 0, functi
     res.cookie("jwt", token, {
         expires: new Date(Date.now() + 1000 * 60 * 60 * 2),
         sameSite: "none",
+        secure: false,
     });
     const sendResponseObject = {
         id: findUser === null || findUser === void 0 ? void 0 : findUser.id,
