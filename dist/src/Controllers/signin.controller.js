@@ -34,8 +34,6 @@ export const signinUser = (req, res) => __awaiter(void 0, void 0, void 0, functi
     //set domain for cookies
     res.cookie("jwt", token, {
         expires: new Date(Date.now() + 1000 * 60 * 60 * 2),
-        httpOnly: true,
-        sameSite: false,
     });
     const sendResponseObject = {
         id: findUser === null || findUser === void 0 ? void 0 : findUser.id,
