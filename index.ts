@@ -27,7 +27,7 @@ const PORT = 8080 || process.env.PORT;
 app.use(express.json());
 app.use(cookieParser());
 const corsConfig = {
-  origin: "*",
+  origin: "https://shoping-karlo.vercel.app",
   credentials: true,
 };
 app.use(cors(corsConfig));
