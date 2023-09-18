@@ -32,7 +32,7 @@ const allowDomains = [
   "http://localhost:3000/",
 ];
 const corsConfig = {
-  origin: "*",
+  origin: allowDomains,
   credentials: true,
 };
 app.use(cors(corsConfig));
