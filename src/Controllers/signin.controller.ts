@@ -37,7 +37,7 @@ export const signinUser = async (
     expires: new Date(Date.now() + 1000 * 60 * 60 * 2),
     sameSite: "none",
     secure: true,
-    domain: "https://shoping-karlo.vercel.app",
+    domain: ".shoping-karlo.vercel.app",
   });
 
   const sendResponseObject = {
