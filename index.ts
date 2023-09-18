@@ -26,8 +26,13 @@ const PORT = 8080 || process.env.PORT;
 
 app.use(express.json());
 app.use(cookieParser());
+
+const allowDomains = [
+  "https://shoping-karlo.vercel.app",
+  "http://localhost:3000/",
+];
 const corsConfig = {
-  origin: "https://shoping-karlo.vercel.app",
+  origin: allowDomains,
   credentials: true,
 };
 app.use(cors(corsConfig));
