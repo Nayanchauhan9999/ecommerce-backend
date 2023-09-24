@@ -21,12 +21,25 @@ import dbConnection from "./src/utils/database/index.js";
 import { validateReqBody, validateToken } from "./src/middleware/index.js";
 import { resolver } from "./src/GraphQL/resolvers/index.js";
 import { typesGraphQl } from "./src/GraphQL/schema/index.js";
+import {
+  ApolloServerPluginLandingPageLocalDefault,
+  ApolloServerPluginLandingPageProductionDefault,
+} from "@apollo/server/plugin/landingPage/default";
 
 const app = express();
 const startServer = async () => {
   const graphQlServer = new ApolloServer({
     typeDefs: typesGraphQl,
     resolvers: resolver,
+    plugins: [
+      // Install a landing page plugin based on NODE_ENV
+      process.env.NODE_ENV === "production"
+        ? ApolloServerPluginLandingPageProductionDefault({
+            graphRef: "my-graph-id@my-graph-variant",
+            footer: false,
+          })
+        : ApolloServerPluginLandingPageLocalDefault({ footer: false }),
+    ],
   });
   const PORT = 8080 || process.env.PORT;
 
