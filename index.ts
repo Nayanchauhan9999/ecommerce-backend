@@ -32,13 +32,7 @@ const startServer = async () => {
     typeDefs: typesGraphQl,
     resolvers: resolver,
     plugins: [
-      // Install a landing page plugin based on NODE_ENV
-      process.env.NODE_ENV === "production"
-        ? ApolloServerPluginLandingPageProductionDefault({
-            // graphRef: "my-graph-id@my-graph-variant",
-            footer: false,
-          })
-        : ApolloServerPluginLandingPageLocalDefault({ footer: false }),
+      ApolloServerPluginLandingPageProductionDefault({ footer: false }),
     ],
   });
   const PORT = 8080 || process.env.PORT;
