@@ -31,7 +31,7 @@ const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
             // Install a landing page plugin based on NODE_ENV
             process.env.NODE_ENV === "production"
                 ? ApolloServerPluginLandingPageProductionDefault({
-                    graphRef: "my-graph-id@my-graph-variant",
+                    // graphRef: "my-graph-id@my-graph-variant",
                     footer: false,
                 })
                 : ApolloServerPluginLandingPageLocalDefault({ footer: false }),
