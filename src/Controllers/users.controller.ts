@@ -45,7 +45,8 @@ export const updateUser = async (req: Request, res: Response) => {
         new: true,
       }
     );
-    if (updatedUser) res.status(200).json({ message: "User Details Update success" });
+    if (updatedUser)
+      res.status(200).json({ message: "User Details Update success" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal server error" });
