@@ -10,9 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import UserModal from "../models/user.model.js";
 // method : GET ::: route - /api/v1/users ::: get All users list ::: Login Required
 export const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     try {
         const token = req.cookies.jwt;
-        if (!token) {
+        const authToken = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(" ")[1];
+        if (!token && !authToken) {
             res
                 .status(403)
                 .json({ message: "You don't have permission to access content" });

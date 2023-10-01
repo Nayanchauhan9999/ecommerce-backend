@@ -6,7 +6,10 @@ import { IUser } from "../utils/Types/index.js";
 export const getUsers = async (req: Request, res: Response) => {
   try {
     const token = req.cookies.jwt;
-    if (!token) {
+    const authToken: string | undefined =
+      req.headers.authorization?.split(" ")[1];
+
+    if (!token && !authToken) {
       res
         .status(403)
         .json({ message: "You don't have permission to access content" });
