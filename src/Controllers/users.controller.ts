@@ -6,6 +6,9 @@ import { IUser } from "../utils/Types/index.js";
 export const getUsers = async (req: Request, res: Response) => {
   try {
     const token = req.cookies.jwt;
+    // const authToken: string | undefined =
+    //   req.headers.authorization?.split(" ")[1];
+
     if (!token) {
       res
         .status(403)

@@ -12,6 +12,8 @@ import UserModal from "../models/user.model.js";
 export const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const token = req.cookies.jwt;
+        // const authToken: string | undefined =
+        //   req.headers.authorization?.split(" ")[1];
         if (!token) {
             res
                 .status(403)
