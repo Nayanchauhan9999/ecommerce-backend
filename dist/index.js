@@ -16,12 +16,12 @@ import "dotenv/config";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 //personal imports
-import { categoryRoutes, homeRoutes, signinRoutes, signupRoutes, userRoutes, productRoutes, signoutRoutes } from "./src/Routes/index.js";
+import { categoryRoutes, homeRoutes, signinRoutes, signupRoutes, userRoutes, productRoutes, signoutRoutes, } from "./src/Routes/index.js";
 import dbConnection from "./src/utils/database/index.js";
 import { validateReqBody, validateToken } from "./src/middleware/index.js";
 import { resolver } from "./src/GraphQL/resolvers/index.js";
 import { typesGraphQl } from "./src/GraphQL/schema/index.js";
-import { ApolloServerPluginLandingPageLocalDefault, ApolloServerPluginLandingPageProductionDefault } from "@apollo/server/plugin/landingPage/default";
+import { ApolloServerPluginLandingPageLocalDefault, ApolloServerPluginLandingPageProductionDefault, } from "@apollo/server/plugin/landingPage/default";
 const app = express();
 const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     const graphQlServer = new ApolloServer({
