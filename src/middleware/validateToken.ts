@@ -11,8 +11,6 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
     res.status(401).json({ message: "Session Expire, Please login" });
     return;
   }
-  console.log(authToken);
-
   //verify jwt token by expiry, only run if logout by admin, because cookie and token expiry time are same ::: eg. cookie stored in cookie storage but token is expired.
   try {
     if (!authToken || token) {
