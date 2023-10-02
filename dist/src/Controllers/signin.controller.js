@@ -1,0 +1,48 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+import bcrypt from "bcrypt";
+import UserModal from "../models/user.model.js";
+export const signinUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    const { email, password } = req.body;
+    if (!email) {
+        res.json({ message: "Please enter you email" });
+        return;
+    }
+    if (!password) {
+        res.json({ message: "Please enter you password" });
+        return;
+    }
+    const findUser = yield UserModal.findOne({ email });
+    if (!findUser) {
+        res.json({ message: "Email not registered" });
+        return;
+    }
+    const comparePassword = yield bcrypt.compare(password, findUser.password);
+    if (!comparePassword) {
+        res.status(400).json({ message: "Email or password does't match" });
+        return;
+    }
+    const token = yield findUser.generateAuthToken();
+    //set domain for cookies
+    res.cookie("jwt", token, {
+        //token expires in 1 hour
+        expires: new Date(Date.now() + 1000 * 60 * 60),
+        sameSite: "none",
+        secure: true,
+        httpOnly: true,
+    });
+    const sendResponseObject = {
+        id: findUser === null || findUser === void 0 ? void 0 : findUser.id,
+        email: findUser === null || findUser === void 0 ? void 0 : findUser.email,
+        token: (_a = findUser === null || findUser === void 0 ? void 0 : findUser.tokens[findUser.tokens.length - 1]) === null || _a === void 0 ? void 0 : _a.token,
+    };
+    res.send(sendResponseObject);
+});
