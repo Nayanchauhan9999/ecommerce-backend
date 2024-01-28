@@ -1,5 +1,5 @@
 //external library imports
-import express from "express";
+import express, { Request, Response } from "express";
 import chalk from "chalk";
 import cookieParser from "cookie-parser";
 import cors from "cors";

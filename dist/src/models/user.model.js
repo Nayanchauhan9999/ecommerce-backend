@@ -69,6 +69,10 @@ var userSchema = new Schema({
         type: Date,
         default: Date.now,
     },
+    isVerified: {
+        type: Boolean,
+        default: false,
+    },
     tokens: [
         {
             token: {

@@ -2,6 +2,7 @@ import { Response, Request } from "express";
 import { IUser } from "../utils/Types/index.js";
 import bcrypt from "bcrypt";
 import UserModal from "../models/user.model.js";
+import { transporter } from "../utils/smtp/nodemailer.js";
 
 export const signinUser = async (
   req: Request<{}, {}, IUser>,
@@ -47,5 +48,16 @@ export const signinUser = async (
     token: findUser?.tokens[findUser.tokens.length - 1]?.token,
   };
 
+  try {
+    const mail = await transporter.sendMail({
+      from: "Ethereal Email <nayanchauhan9999@gmail.com>",
+      to: "nayan chauhan <roxane8@ethereal.email>",
+      subject: "Hello ✔ hi",
+      text: "Hello world?",
+      html: "<b>Hello world? how are you?</b>",
+    });
+  } catch (error) {
+    console.log(error);
+  }
   res.send(sendResponseObject);
 };

@@ -13,6 +13,7 @@ export interface IUser extends Document {
   password: string;
   confirmPassword: string;
   createdAt: Date;
+  isVerified: boolean;
   tokens: TokenTypes[];
 }
 

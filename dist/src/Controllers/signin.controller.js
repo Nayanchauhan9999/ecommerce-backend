@@ -36,8 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import bcrypt from "bcrypt";
 import UserModal from "../models/user.model.js";
+import { transporter } from "../utils/smtp/nodemailer.js";
 export var signinUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, email, password, findUser, comparePassword, token, sendResponseObject;
+    var _a, email, password, findUser, comparePassword, token, sendResponseObject, mail, error_1;
     var _b;
     return __generator(this, function (_c) {
         switch (_c.label) {
@@ -81,6 +82,24 @@ export var signinUser = function (req, res) { return __awaiter(void 0, void 0, v
                     email: findUser === null || findUser === void 0 ? void 0 : findUser.email,
                     token: (_b = findUser === null || findUser === void 0 ? void 0 : findUser.tokens[findUser.tokens.length - 1]) === null || _b === void 0 ? void 0 : _b.token,
                 };
+                _c.label = 4;
+            case 4:
+                _c.trys.push([4, 6, , 7]);
+                return [4 /*yield*/, transporter.sendMail({
+                        from: "Ethereal Email <nayanchauhan9999@gmail.com>",
+                        to: "nayan chauhan <roxane8@ethereal.email>",
+                        subject: "Hello ✔ hi",
+                        text: "Hello world?",
+                        html: "<b>Hello world? how are you?</b>",
+                    })];
+            case 5:
+                mail = _c.sent();
+                return [3 /*break*/, 7];
+            case 6:
+                error_1 = _c.sent();
+                console.log(error_1);
+                return [3 /*break*/, 7];
+            case 7:
                 res.send(sendResponseObject);
                 return [2 /*return*/];
         }
